@@ -48,13 +48,6 @@ def student_list_(request):
     return render(request, 'output.html',{'posts':posts})
 '''
 
-'''
-def student_list_(request):
-    posts = Student.objects.filter(classroom=701).only('firstname', 'age')
-    print(posts)
-    print(connection.queries)
-    return render(request, 'output.html',{'posts':posts})
-'''
 
 """ 
 def student_list_(request):
@@ -63,10 +56,17 @@ def student_list_(request):
     print(posts)
     return render(request, 'output.html',{'posts':posts})
 """
-
+'''
 def student_list_(request):
     cursor = connection.cursor()
     cursor.execute("SELECT count(*) FROM student_student")
     r = cursor.fetchone()
     print(r)
     return render(request, 'output.html',{'posts':r})
+
+'''
+def student_list_(request):
+    posts = Student.objects.filter(classroom=701).only('firstname', 'age')
+    print(posts)
+    print(connection.queries)
+    return render(request, 'output.html',{'posts':posts})
